@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends 'game/base.html' %}
+    {% block gameContent %}
+        <a href="{%url 'log:logout'%}">Logout</a>
+        {% if request.user.is_authenticated %}
+            {% for i in chars %}
+                {% if i.user == request.user %}
+                    {{ char.charName}}
+                    <a href="{%url 'game:kampf'%}">Kampf</a>
+                {% else %}
+                    <a href="{%url 'game:charChreate'%}">CahrMake</a>
+                {% endif %}
+            {% empty %}  <!-- wenn posts lehr ist -->
+                {% if user == request.user %}
+                    <p>Du hast noch kein Char</p>
+                    <a href="{%url 'game:charChreate'%}"> CahrMake</a>
+                {%else%}
+                    <p> Der User {{ user.username }} hatt noch keine Einträge</p>
+                {% endif %}
+            {% endfor %}
+        {%else%}
+            <a href="{%url 'log:login'%}">Login</a>
+            <a href="{%url 'log:register'%}">Account anlegen</a>
+
+        {% endif %}
+    {% endblock %}
+</html>

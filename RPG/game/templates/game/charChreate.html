@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends 'game/base.html' %}
+    {% block gameContent %}
+        <form method="post" action="">
+            {{charMaker_form.as_p}}
+            {% csrf_token %}
+            <button type="submit" >Erschaffen</button>
+        </form>
+    {% endblock %}

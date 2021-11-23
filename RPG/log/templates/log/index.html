@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{%block titel%} RPG {%endblock%}</title>
+</head>
+<body>
+{% if request.user.is_authenticated %}                <!-- If Schleife um abzufragen ob der User existiert wenn ja Hall user wenn nicht steht ihm die anderen Obtionen zu Verfügung -->
+<p>Hallo {{request.user.username}} !</p>
+<a href="{%url 'log:logout'%}">Logout</a>
+<a href = "{%url 'game:index"></a>
+{% else %}
+<a href="{%url 'log:login'%}">Login</a>
+<a href="{%url 'log:register'%}">Account anlegen</a>
+{% endif %}
+{%block authForm%} <!-- Block in den je nach Seite Verschiedenes eingefügt werden kann -->
+
+{%endblock%}
+</body>
+</html>

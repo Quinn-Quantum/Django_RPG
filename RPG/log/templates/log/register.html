@@ -1,0 +1,9 @@
+{% extends 'log/index.html' %}
+{%block titel%} RPG-Account anlegen{%endblock%}
+{%block authForm%}
+<form method="post" action="">
+    {{register_form.as_p}}
+    {% csrf_token %}
+    <button type="submit" >anlegen</button>
+</form>
+{%endblock%}
