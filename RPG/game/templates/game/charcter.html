@@ -8,11 +8,15 @@
             {% for i in chars %}
                 {% if i.user == request.user %}
                     <h3>Dein Char:</h3>
-                    <p>Name:   {{ i.charName}}</p>
-                    <p>KLasse: {{ i.charClasse}}</p>
-                    <p>ATK:    {{ i.charATK}}</p>
-                    <p>DEF:    {{ i.charDEF}}</p>
-                    <p>MAN:    {{ i.charMAN}}</p> <br>
+                    <p>Name:            {{ i.charName}}</p>
+                    <p>KLasse:          {{ i.charClasse}}</p>
+                    <p>ATK:             {{ i.charATK}}</p>
+                    <p>DEF:             {{ i.charDEF}}</p>
+                    <p>MAN:             {{ i.charMAN}}</p>
+                    <p>EP:              {{ i.charEP}}</p>
+                    <p>Level:           {{ i.charLevel}}</p>
+                    <p>vernichtet:      {{ i.besigtegegner}}</p>
+                    <br>
                     <a href="{%url 'game:kampf'%}">Kampf</a>
                 {% else %}
                     <a href="{%url 'game:charChreate'%}">CahrMake</a>

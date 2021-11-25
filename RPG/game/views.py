@@ -26,6 +26,9 @@ def charChreate_view(request):
         if charMaker_form.is_valid():
             maker=charMaker_form.save(commit=False)
             maker.user=request.user
+            maker.charEP=0
+            maker.charLevel=1
+            maker.besigtegegner =0
             if maker.charClasse == 'Kriger':
                 maker.charATK = 15
                 maker.charDEF =10

@@ -10,3 +10,6 @@ class CharMod(models.Model):
     charATK = models.IntegerField(null=True)
     charDEF = models.IntegerField(null=True)
     charMAN = models.IntegerField(null=True)
+    charEP = models.IntegerField(null=True)
+    charLevel= models.IntegerField(null=True)
+    besigtegegner= models.IntegerField(null=True)
