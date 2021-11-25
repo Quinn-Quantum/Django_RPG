@@ -13,3 +13,4 @@ class CharMod(models.Model):
     charEP = models.IntegerField(null=True)
     charLevel= models.IntegerField(null=True)
     besigtegegner= models.IntegerField(null=True)
+    charLeben = models.IntegerField(null=True)

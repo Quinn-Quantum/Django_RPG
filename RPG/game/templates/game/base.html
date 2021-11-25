@@ -22,4 +22,67 @@
     {% endblock %}
 
 </body>
+<script>
+      function Kampf(eigenleben, gegnerleben){
+
+
+
+            if (eigenleben <=0 || gegnerleben <=0){
+            var e2= document.getElementById('endekampf');
+            e2.style.visibility = "visible";
+            var e1= document.getElementById('Kampf');
+            e1.style.display = "none";
+                if (gegnerleben<= 0){
+                    var gut = 'Sie haben gewonnen, herzlichen Glückwunsch'
+                    wissen = wissen +10;
+                    document.getElementById('ausgang').innerHTML=gut;
+                }
+                else{
+                    var schlecht = 'Sie haben leider verloren.'
+                    document.getElementById('ausgang').innerHTML=schlecht;
+                }
+
+
+        }
+
+    }
+    var min = 1;
+    var max = 100;
+     function angrif1(){
+            document.getElementById('angrif1').disabled = true; //Butten aus
+            document.getElementById('angrif2').disabled = true;
+            document.getElementById('gegnerk').disabled = false; //Butten an
+            var ran = Math.floor(Math.random() * (max - min)) + min;
+
+            if (ran <= eigenerangrif){
+                gegnerleben = gegnerleben -20;
+            }
+
+
+        }
+     function angrif2(){
+            document.getElementById('angrif2').disabled = true;
+            document.getElementById('angrif1').disabled = true;
+            document.getElementById('gegnerk').disabled = false;
+            var ran = Math.floor(Math.random() * (max - min)) + min;
+
+            if (ran <= eigenerangrif){
+                gegnerleben = gegnerleben -30;
+            }
+
+
+        }
+      function gegnerk(){
+            document.getElementById('angrif1').disabled = false;
+            document.getElementById('angrif2').disabled = false;
+            document.getElementById('gegnerk').disabled = true;
+            var ran = Math.floor(Math.random() * (max - min)) + min;
+
+            if (ran <= gegnerangriff){
+                eigenleben = eigenleben -10;
+            }
+
+
+}
+</script>
 </html>

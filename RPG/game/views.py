@@ -5,6 +5,7 @@ from django.urls.base import *
 from .models import *
 from .forms import *
 from django.contrib.auth.models import *
+from .gegner import *
 
 def index(request):
     user = get_object_or_404(User, username=request.user.username)
@@ -16,7 +17,11 @@ def char_view(request):
     return render(request, 'game/charcter.html', {'chars': chars, 'user':user})
 
 def kampf_view(request):
-    return render(request, 'game/kampf.html')
+    if request.user.is_authenticated:
+        gegner = Gegner()
+    user = get_object_or_404(User, username=request.user.username)
+    chars = CharMod.objects.filter(user=user)
+    return render(request, 'game/kampf.html', {'gegner':gegner, 'chars': chars, 'user':user})
 
 def charChreate_view(request):
     charMaker_form = charMaker()
@@ -29,6 +34,7 @@ def charChreate_view(request):
             maker.charEP=0
             maker.charLevel=1
             maker.besigtegegner =0
+            maker.charLeben = 50
             if maker.charClasse == 'Kriger':
                 maker.charATK = 15
                 maker.charDEF =10

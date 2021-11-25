@@ -1,8 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 {% extends 'game/base.html' %}
+
     {% block gameContent %}
+            {% if request.user.is_authenticated %}
+                {% for i in chars %}
+                    {% if i.user == request.user %}
+                        <div classe = "Char">
+                            <h1>Du</h1>
+                        <p>Name:            {{ i.charName}}</p>
+                        <p id = "leben">KLasse:          {{ i.charClasse}}</p>
+                        <p>Leben:           {{ i.charLeben}} </p>
+                      </div>
+                        <br>
+                        <div class = "Gegner">
+                        <h1>Gegner</h1>
+                        <p>Name:           T-Rex</p>
+                        <p id = "gegnerleben">Leben:          {{ gegner.leben}} </p>
 
+                      </div>
+                        <br>
+                    {% else %}
+                        <a href="{%url 'game:charChreate'%}">CahrMake</a>
+                    {% endif %}
+                {% endfor %}
+                {% endif %}
+            <p>___________________________</p>
+            <p>Angriffe:</p>
+            <input type="button" class = "button" id="angrif1" value="Schwert" style= "color:rgb(91, 51, 145)" onclick="angrif1();Kampf(i.charLeben)">
+            <input type="button" class = "button" id="angrif2" value="Magieball" style= "color:rgb(91, 51, 145)" onclick="angrif2();Kampf(gegner.leben)">
+            <p>___________________________</p>
+            <input type="button" class = "button" id="gegnerk" value="Angriff Gegner" disabled="disabled"  onclick="gegnerk();Kampf()">
 
+                <p id="ausgang"></p>
 
     {% endblock %}
+
+
+</html>
