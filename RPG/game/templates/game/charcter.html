@@ -3,10 +3,16 @@
 {% extends 'game/base.html' %}
     {% block gameContent %}
         <a href="{%url 'log:logout'%}">Logout</a>
+        <br>
         {% if request.user.is_authenticated %}
             {% for i in chars %}
                 {% if i.user == request.user %}
-                    {{ char.charName}}
+                    <h3>Dein Char:</h3>
+                    <p>Name:   {{ i.charName}}</p>
+                    <p>KLasse: {{ i.charClasse}}</p>
+                    <p>ATK:    {{ i.charATK}}</p>
+                    <p>DEF:    {{ i.charDEF}}</p>
+                    <p>MAN:    {{ i.charMAN}}</p> <br>
                     <a href="{%url 'game:kampf'%}">Kampf</a>
                 {% else %}
                     <a href="{%url 'game:charChreate'%}">CahrMake</a>

@@ -20,11 +20,26 @@ def kampf_view(request):
 
 def charChreate_view(request):
     charMaker_form = charMaker()
+    maker=charMaker_form.save(commit=False)
     if request.method == 'POST':
         charMaker_form = charMaker(request.POST)
-        if login_form.is_valid():
-            charName = charMaker_form.cleaned_data['charName']
-            charClasse =charMaker_form.cleaned_data['charClasse']
-            Char.objects.create(charName=charName,charClasse=charClasse )
-    return render(request, 'game/charChreate.html', {'charMaker_form':charMaker_form})
+        if charMaker_form.is_valid():
+            maker=charMaker_form.save(commit=False)
+            maker.user=request.user
+            if maker.charClasse == 'Kriger':
+                maker.charATK = 15
+                maker.charDEF =10
+                maker.charMAN = 10
+            elif maker.charClasse == 'Magier':
+                maker.charATK = 10
+                maker.charDEF =10
+                maker.charMAN = 15
+            else:
+                maker.charATK = 10
+                maker.charDEF = 10
+                maker.charMAN = 10
+            maker.save()
+            if maker:
+                return redirect(reverse( 'game:char'))
+    return render(request, 'game/charChreate.html', {'charMaker_form':charMaker_form, 'maker': maker})
 
