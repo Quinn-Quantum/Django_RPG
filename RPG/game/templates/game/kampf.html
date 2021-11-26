@@ -6,34 +6,44 @@
             {% if request.user.is_authenticated %}
                 {% for i in chars %}
                     {% if i.user == request.user %}
-                        <div classe = "Char">
-                            <h1>Du</h1>
-                        <p>Name:            {{ i.charName}}</p>
-                        <p id = "leben">KLasse:          {{ i.charClasse}}</p>
-                        <p>Leben:           {{ i.charLeben}} </p>
-                      </div>
-                        <br>
-                        <div class = "Gegner">
-                        <h1>Gegner</h1>
-                        <p>Name:           T-Rex</p>
-                        <p id = "gegnerleben">Leben:          {{ gegner.leben}} </p>
+                        <input type ="button" class = "button" id ="start" value="Start" onclick="startKampf({{ankreifer.leben}},{{ gegner.leben}}, {{ankreifer.atk}} , {{gegner.atk}} )">
 
-                      </div>
-                        <br>
+                            <div id = "Char" style="visibility: hidden">
+                                <h1>Du</h1>
+                            <p>Name:            {{ i.charName}}</p>
+                            <p >KLasse:          {{ i.charClasse}}</p>
+                            <p>{{i.besigtegegner}}</p>
+                            <p id = "leben"> </p>
+                          </div>
+
+                            <br>
+
+                            <div id = "Gegner" style="visibility: hidden">
+                            <h1>Gegner</h1>
+                            <p>Name:           T-Rex</p>
+                            <p id = "leben2"></p>
+                          </div>
+
+                            <br>
+
                     {% else %}
                         <a href="{%url 'game:charChreate'%}">CahrMake</a>
                     {% endif %}
                 {% endfor %}
                 {% endif %}
+            <div id = "Atacken" style="visibility: hidden">
             <p>___________________________</p>
             <p>Angriffe:</p>
-            <input type="button" class = "button" id="angrif1" value="Schwert" style= "color:rgb(91, 51, 145)" onclick="angrif1();Kampf(i.charLeben)">
-            <input type="button" class = "button" id="angrif2" value="Magieball" style= "color:rgb(91, 51, 145)" onclick="angrif2();Kampf(gegner.leben)">
+            <input type="button" class = "button" id="angrif1" value="Schwert" style= "color:rgb(91, 51, 145)" onclick="angrif1();Kampf()">
+            <input type="button" class = "button" id="angrif2" value="Magieball" style= "color:rgb(91, 51, 145)" onclick="angrif2();Kampf()">
             <p>___________________________</p>
             <input type="button" class = "button" id="gegnerk" value="Angriff Gegner" disabled="disabled"  onclick="gegnerk();Kampf()">
-
-                <p id="ausgang"></p>
-
+            </div>
+            <p id="ausgang"></p>
+            <form method="post" action="">
+                <input type="button" class = "button" id="Sieg" method="post" value ="Weiter" style="visibility: hidden">
+                <input type="button" class = "button" id = "Niederlage" value ="Weiter" style="visibility: hidden">
+            </form>
     {% endblock %}
 
 

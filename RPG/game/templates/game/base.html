@@ -22,33 +22,52 @@
     {% endblock %}
 
 </body>
-<script>
-      function Kampf(eigenleben, gegnerleben){
+<script type="text/javascript">
 
+        var eigenleben
+        var gegnerleben
+        var eigenerangrif
+        var gegnerangriff
+
+       function startKampf(charLeben, gegnerLeben, charATK, gegnerATK){
+            eigenleben =charLeben;
+            gegnerleben =gegnerLeben;
+            eigenerangrif =charATK;
+            gegnerangriff =gegnerATK;
+            document.getElementById('Char').style.visibility = 'visible';
+            document.getElementById('Gegner').style.visibility = 'visible';
+            document.getElementById('Atacken').style.visibility = 'visible';
+            document.getElementById('start').style.visibility = 'hidden';
+            document.getElementById('leben').innerHTML= 'Leben: '+eigenleben;
+            document.getElementById('leben2').innerHTML='Gegner Leben: '+gegnerleben;
+       };
+
+      function Kampf(){
+            document.getElementById('leben').innerHTML= 'Leben: '+ eigenleben;
+            document.getElementById('leben2').innerHTML='Gegner Leben: '+ gegnerleben;
 
 
             if (eigenleben <=0 || gegnerleben <=0){
-            var e2= document.getElementById('endekampf');
-            e2.style.visibility = "visible";
-            var e1= document.getElementById('Kampf');
-            e1.style.display = "none";
-                if (gegnerleben<= 0){
-                    var gut = 'Sie haben gewonnen, herzlichen Glückwunsch'
-                    wissen = wissen +10;
-                    document.getElementById('ausgang').innerHTML=gut;
-                }
-                else{
-                    var schlecht = 'Sie haben leider verloren.'
-                    document.getElementById('ausgang').innerHTML=schlecht;
-                }
+                document.getElementById('Atacken').style.display = "none";
+                    if (gegnerleben<= 0){
+                        var gut = 'Sie haben gewonnen, herzlichen Glückwunsch'
+                        document.getElementById('ausgang').innerHTML=gut;
+                        document.getElementById('Sieg').style.visibility = 'visible';
+                    }
+                    else{
+                        var schlecht = 'Sie haben leider verloren.'
+                        document.getElementById('ausgang').innerHTML=schlecht;
+                        document.getElementById('Niederlage').style.visibility = 'visible';
+                    }
 
 
-        }
+            }
 
     }
     var min = 1;
-    var max = 100;
+    var max = 25;
      function angrif1(){
+
             document.getElementById('angrif1').disabled = true; //Butten aus
             document.getElementById('angrif2').disabled = true;
             document.getElementById('gegnerk').disabled = false; //Butten an
@@ -60,14 +79,14 @@
 
 
         }
-     function angrif2(){
+     function angrif2(n){
             document.getElementById('angrif2').disabled = true;
             document.getElementById('angrif1').disabled = true;
             document.getElementById('gegnerk').disabled = false;
             var ran = Math.floor(Math.random() * (max - min)) + min;
 
             if (ran <= eigenerangrif){
-                gegnerleben = gegnerleben -30;
+               gegnerleben = gegnerleben -30;
             }
 
 

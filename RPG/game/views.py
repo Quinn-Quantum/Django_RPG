@@ -6,6 +6,7 @@ from .models import *
 from .forms import *
 from django.contrib.auth.models import *
 from .gegner import *
+from .ankreifer import *
 
 def index(request):
     user = get_object_or_404(User, username=request.user.username)
@@ -21,7 +22,16 @@ def kampf_view(request):
         gegner = Gegner()
     user = get_object_or_404(User, username=request.user.username)
     chars = CharMod.objects.filter(user=user)
-    return render(request, 'game/kampf.html', {'gegner':gegner, 'chars': chars, 'user':user})
+    for i in chars:
+        if i.user == request.user:
+            ankreifer = Ankreifer()
+            ankreifer.atk = i.charATK
+            ankreifer.leben = i.charLeben
+    if request.method == 'POST':
+        for i in chars:
+            i.besigtegegner = i.besigtegegner+1
+            return redirect(reverse('game:char'))
+    return render(request, 'game/kampf.html', {'gegner':gegner, 'chars': chars, 'user':user, 'ankreifer':ankreifer })
 
 def charChreate_view(request):
     charMaker_form = charMaker()
