@@ -42,7 +42,7 @@ def charChreate_view(request):
             maker.charLevel=1
             maker.besigtegegner =0
             maker.charLeben = 50
-            if maker.charClasse == 'Kriger':
+            if maker.charClasse == 'Krieger':
                 maker.charATK = 15
                 maker.charDEF = 10
                 maker.charMAN = 10

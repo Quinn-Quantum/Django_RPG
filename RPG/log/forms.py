@@ -1,9 +1,7 @@
 from django import forms
 from django.contrib.auth.models import *
-
 #Forms die sich auf models bezihen werden mit forms.Modelform deklariert
 #normale Forms einfach forms.Forms
-
 
 class RegisterForm(forms.Form):
     username = forms.CharField(max_length = 50, label = 'Username eintragen' ,required = True)

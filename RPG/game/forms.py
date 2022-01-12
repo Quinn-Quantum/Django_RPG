@@ -6,7 +6,7 @@ from django.forms import *
 
 
 class charMaker(ModelForm):
-    CHOICES = (("Kriger", "Kriger"), ("Magier", "Magier") )
+    CHOICES = (("Krieger", "Krieger"), ("Magier", "Magier") )
     charClasse = ChoiceField(choices=CHOICES)
 
     class Meta:
