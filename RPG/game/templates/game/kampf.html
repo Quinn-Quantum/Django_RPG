@@ -12,7 +12,6 @@
                                 <h1>Du</h1>
                             <p>Name:            {{ i.charName}}</p>
                             <p >KLasse:          {{ i.charClasse}}</p>
-                            <p>{{i.besigtegegner}}</p>
                             <p id = "leben"> </p>
                           </div>
 
@@ -40,10 +39,10 @@
             <input type="button" class = "button" id="gegnerk" value="Angriff Gegner" disabled="disabled"  onclick="gegnerk();Kampf()">
             </div>
             <p id="ausgang"></p>
-            <form method="post" action="">
-                <input type="button" class = "button" id="Sieg" method="post" value ="Weiter" style="visibility: hidden">
-                <input type="button" class = "button" id = "Niederlage" value ="Weiter" style="visibility: hidden">
-            </form>
+            <a href ="{%url 'game:sieg'%}"  id="Sieg" name ="Sieg"  style="visibility: hidden">Weiter</a>
+            <a href ="{%url 'game:niederlage'%}" id = "Niederlage" name ='Niedelage' style="visibility: hidden">Weiter</a>
+
+{% csrf_token %}
     {% endblock %}
 
 

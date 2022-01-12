@@ -22,16 +22,13 @@ def kampf_view(request):
         gegner = Gegner()
     user = get_object_or_404(User, username=request.user.username)
     chars = CharMod.objects.filter(user=user)
+    spieler = CharMod.objects.get(user=request.user)
     for i in chars:
         if i.user == request.user:
-            ankreifer = Ankreifer()
+            ankreifer = Ankreifer() #damit die Werte des Chars suaber übergeben werden können
             ankreifer.atk = i.charATK
             ankreifer.leben = i.charLeben
-    if request.method == 'POST':
-        for i in chars:
-            i.besigtegegner = i.besigtegegner+1
-            return redirect(reverse('game:char'))
-    return render(request, 'game/kampf.html', {'gegner':gegner, 'chars': chars, 'user':user, 'ankreifer':ankreifer })
+    return render(request, 'game/kampf.html', {'gegner':gegner, 'chars': chars, 'user':user, 'ankreifer':ankreifer, 'spieler':spieler })
 
 def charChreate_view(request):
     charMaker_form = charMaker()
@@ -47,11 +44,11 @@ def charChreate_view(request):
             maker.charLeben = 50
             if maker.charClasse == 'Kriger':
                 maker.charATK = 15
-                maker.charDEF =10
+                maker.charDEF = 10
                 maker.charMAN = 10
             elif maker.charClasse == 'Magier':
                 maker.charATK = 10
-                maker.charDEF =10
+                maker.charDEF = 10
                 maker.charMAN = 15
             else:
                 maker.charATK = 10
@@ -61,4 +58,33 @@ def charChreate_view(request):
             if maker:
                 return redirect(reverse( 'game:char'))
     return render(request, 'game/charChreate.html', {'charMaker_form':charMaker_form, 'maker': maker})
+
+def sieg_view (request):
+    user = get_object_or_404(User, username=request.user.username)
+    chars = CharMod.objects.filter(user=user)
+    for i in chars:
+        if i.user == request.user:
+            i.besigtegegner += 1
+            i.charEP += 10
+            if i.charEP == 100:
+                i.charLevel += 1
+                #Level up
+                if i.charClasse == 'Magier':
+                    i.charMAN += 5
+                    i.charDEF += 2
+                    i.charATK += 2
+                    i.charLeben += 5
+                    i.charEP = 0
+                else:
+                    i.charMAN += 2
+                    i.charDEF += 2
+                    i.charATK += 5
+                    i.charLeben += 5
+                    i.charEP = 0
+
+            i.save()
+    return redirect(reverse('game:char'), {'user':user, 'chars':chars})
+
+def niederlage_view(request):
+    return redirect(reverse('game:char'))
 

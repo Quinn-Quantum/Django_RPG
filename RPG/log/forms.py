@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.models import *
+
 #Forms die sich auf models bezihen werden mit forms.Modelform deklariert
 #normale Forms einfach forms.Forms
 
