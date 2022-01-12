@@ -1,0 +1,26 @@
+.kampf{
+background-color: DarkSeaGreen;
+margin-top:5%;
+margin-left:20%;
+align-items: center;
+}
+img{
+width: 5%;
+}
+
+
+
+
+
+.start{
+background-color: LightBlue;
+margin-top:10%;
+text-align: center;
+}
+
+#start{
+color:Black;
+font-family: Arial, Helvetica, sans-serif;
+font-size: 3em;
+margin-right: 5%;
+}

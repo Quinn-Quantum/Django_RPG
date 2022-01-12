@@ -9,9 +9,14 @@
                         <input type ="button" class = "button" id ="start" value="Start" onclick="startKampf({{ankreifer.leben}},{{ gegner.leben}}, {{ankreifer.atk}} , {{gegner.atk}} )">
 
                             <div id = "Char" style="visibility: hidden">
-                                <h1>Du</h1>
+                            <h1>Du</h1>
                             <p>Name:            {{ i.charName}}</p>
-                            <p >KLasse:          {{ i.charClasse}}</p>
+                            <p>KLasse:          {{ i.charClasse}}</p>
+                            {% if i.charClasse == 'Kriger'%}
+                                <img src="/static/kleinerRitter.png" />
+                            {% elif i.charClasse == 'Magier'%}
+                                <img src="/static/kleinerMagier.png" />
+                             {% endif%}
                             <p id = "leben"> </p>
                           </div>
 
