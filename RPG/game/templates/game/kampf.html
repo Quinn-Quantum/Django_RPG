@@ -12,7 +12,7 @@
                             <h1>Du</h1>
                             <p>Name:            {{ i.charName}}</p>
                             <p>KLasse:          {{ i.charClasse}}</p>
-                            {% if i.charClasse == 'Kriger'%}
+                            {% if i.charClasse == 'Krieger'%}
                                 <img src="/static/kleinerRitter.png" />
                             {% elif i.charClasse == 'Magier'%}
                                 <img src="/static/kleinerMagier.png" />
@@ -24,7 +24,10 @@
 
                             <div id = "Gegner" style="visibility: hidden">
                             <h1>Gegner</h1>
-                            <p>Name:           T-Rex</p>
+                            {% if gegner.name == 'Der grinsende Tod'%}
+                                <img src="/static/Der_grinsende_Tod.jpg" />
+                            {% endif%}
+                            <p>Name:           {{gegner.name}}</p>
                             <p id = "leben2"></p>
                           </div>
 

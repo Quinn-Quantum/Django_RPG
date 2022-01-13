@@ -14,3 +14,12 @@ class CharMod(models.Model):
     charLevel= models.IntegerField(null=True)
     besigtegegner= models.IntegerField(null=True)
     charLeben = models.IntegerField(null=True)
+
+class EnemyMod(models.Model):
+    id = models.IntegerField(primary_key = True)
+    enemyName = models.CharField(max_length=50)
+    enemyATK = models.IntegerField(null=True)
+    enemyDEF = models.IntegerField(null=True)
+    enemyMAN = models.IntegerField(null=True)
+    enemyLeben = models.IntegerField(null=True)
+    enemyBild = models.ImageField(),

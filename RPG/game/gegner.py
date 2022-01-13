@@ -1,5 +1,6 @@
 class Gegner:
-    atk = 5
-    ver = 5
+    name = ""
+    atk = 0
+    ver = 0
     man = 0
-    leben = 10
+    leben = 0

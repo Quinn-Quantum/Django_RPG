@@ -1,5 +1,7 @@
 class Ankreifer:
-    atk = 0
-    ver = 0
-    man = 0
-    leben = 0
+    id = 0
+    enemyName = 0
+    enemyATK = 0
+    enemyDEF = 0
+    enemyMAN = 0
+    enemyLeben = 0

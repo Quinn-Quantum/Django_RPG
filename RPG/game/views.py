@@ -23,11 +23,21 @@ def kampf_view(request):
     user = get_object_or_404(User, username=request.user.username)
     chars = CharMod.objects.filter(user=user)
     spieler = CharMod.objects.get(user=request.user)
+    level = 1
     for i in chars:
         if i.user == request.user:
             ankreifer = Ankreifer() #damit die Werte des Chars suaber übergeben werden können
             ankreifer.atk = i.charATK
             ankreifer.leben = i.charLeben
+            level = i.charLevel
+
+    if level < 2:
+        enemy = EnemyMod.objects.filter(id =1)
+        for j in enemy:
+            if j.id == 1:
+                gegner.name = j.enemyName
+                gegner.atk = j.enemyATK
+                gegner.leben = j.enemyLeben
     return render(request, 'game/kampf.html', {'gegner':gegner, 'chars': chars, 'user':user, 'ankreifer':ankreifer, 'spieler':spieler })
 
 def charChreate_view(request):
