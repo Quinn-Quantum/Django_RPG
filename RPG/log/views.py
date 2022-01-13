@@ -10,6 +10,8 @@ def index(request):
     return render(request, 'log/index.html')
 
 def register_view(request):
+    if request.user.is_authenticated:
+        return redirect(reverse('game:index'))
     register_form = RegisterForm()
     if request.method == "POST":
         register_form = RegisterForm(request.POST)

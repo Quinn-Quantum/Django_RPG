@@ -6,7 +6,7 @@
             {% if request.user.is_authenticated %}
                 {% for i in chars %}
                     {% if i.user == request.user %}
-                        <input type ="button" class = "button" id ="start" value="Start" onclick="startKampf({{ankreifer.leben}},{{ gegner.leben}}, {{ankreifer.atk}} , {{gegner.atk}} )">
+                        <input type ="button" class = "button" id ="start" value="Start" onclick="startKampf({{ankreifer.leben}},{{ gegner.leben}})">
 
                             <div id = "Char" style="visibility: hidden">
                             <h1>Du</h1>
@@ -26,6 +26,10 @@
                             <h1>Gegner</h1>
                             {% if gegner.name == 'Der grinsende Tod'%}
                                 <img src="/static/Der_grinsende_Tod.jpg" />
+                            {% elif gener.name == 'Elektroball'%}
+                                <img src="/static/Elektroball.jpg" />
+                            {% else %}
+                                <img src="/static/Jack.jpg" />
                             {% endif%}
                             <p>Name:           {{gegner.name}}</p>
                             <p id = "leben2"></p>
@@ -41,10 +45,10 @@
             <div id = "Atacken" style="visibility: hidden">
             <p>___________________________</p>
             <p>Angriffe:</p>
-            <input type="button" class = "button" id="angrif1" value="Schwert" style= "color:rgb(91, 51, 145)" onclick="angrif1();Kampf()">
-            <input type="button" class = "button" id="angrif2" value="Magieball" style= "color:rgb(91, 51, 145)" onclick="angrif2();Kampf()">
+            <input type="button" class = "button" id="angrif1" value="Schwert" style= "color:rgb(91, 51, 145)" onclick="angriffSwerthib({{ankreifer.atk}},{{ankreifer.level}},{{gegner.dEF}});Kampf()">
+            <input type="button" class = "button" id="angrif2" value="Magieball" style= "color:rgb(91, 51, 145)" onclick="angriffMagieball({{ankreifer.man}},{{ankreifer.level}},{{gegner.dEF}});Kampf()">
             <p>___________________________</p>
-            <input type="button" class = "button" id="gegnerk" value="Angriff Gegner" disabled="disabled"  onclick="gegnerk();Kampf()">
+            <input type="button" class = "button" id="gegnerk" value="Angriff Gegner" disabled="disabled"  onclick="gegnerk({{gegner.atk}}, {{gegner.man}}, {{ankreifer.level}},{{ankreifer.dEF}});Kampf()">
             </div>
             <p id="ausgang"></p>
             <a href ="{%url 'game:sieg'%}"  id="Sieg" name ="Sieg"  style="visibility: hidden">Weiter</a>

@@ -19,23 +19,21 @@
 
     {% endif %}
 
-
-
     {% endblock %}
 
 </body>
 <script type="text/javascript">
 
-        var eigenleben
-        var gegnerleben
-        var eigenerangrif
-        var gegnerangriff
+        var eigenleben;
+        var gegnerleben;
+        var ran;
+        var damage;
+        var damagemath;
 
-       function startKampf(charLeben, gegnerLeben, charATK, gegnerATK){
+       function startKampf(charLeben, gegnerLeben){
             eigenleben =charLeben;
             gegnerleben =gegnerLeben;
-            eigenerangrif =charATK;
-            gegnerangriff =gegnerATK;
+
             document.getElementById('Char').style.visibility = 'visible';
             document.getElementById('Gegner').style.visibility = 'visible';
             document.getElementById('Atacken').style.visibility = 'visible';
@@ -67,40 +65,58 @@
 
     }
     var min = 1;
-    var max = 25;
-     function angrif1(){
+     function angriffSwerthib(charATK,charLevel,gegnerDEF ){
 
             document.getElementById('angrif1').disabled = true; //Butten aus
             document.getElementById('angrif2').disabled = true;
             document.getElementById('gegnerk').disabled = false; //Butten an
-            var ran = Math.floor(Math.random() * (max - min)) + min;
+            random = Math.floor(Math.random() * (charATK - min)) + min;
 
-            if (ran <= eigenerangrif){
-                gegnerleben = gegnerleben -20;
+            if (random <= charATK){
+                damagemath=(charATK*((2*charLevel+10)/100)/gegnerDEF)*15
+                damage = Math.round(damagemath)
+                gegnerleben = gegnerleben - damage;
             }
 
 
         }
-     function angrif2(n){
+     function angriffMagieball(charMan,charLevel,gegnerDEF){
             document.getElementById('angrif2').disabled = true;
             document.getElementById('angrif1').disabled = true;
             document.getElementById('gegnerk').disabled = false;
-            var ran = Math.floor(Math.random() * (max - min)) + min;
+            random = Math.floor(Math.random() * (charMan - min)) + min;
 
-            if (ran <= eigenerangrif){
-               gegnerleben = gegnerleben -30;
+            if (random <= charMan){
+                damage=(charMan*(2*charLevel+10/100))/gegnerDEF
+                damage = Math.round(damage)
+                gegnerleben = gegnerleben - damage;
             }
 
 
         }
-      function gegnerk(){
+     function gegnerk(gegnerATK, gegnerMAN,charLevel, charDEF){
             document.getElementById('angrif1').disabled = false;
             document.getElementById('angrif2').disabled = false;
             document.getElementById('gegnerk').disabled = true;
-            var ran = Math.floor(Math.random() * (max - min)) + min;
 
-            if (ran <= gegnerangriff){
-                eigenleben = eigenleben -10;
+            var wahl =  Math.floor(Math.random()*2)+1
+            if (wahl == 1){
+                random = Math.floor(Math.random() * (gegnerATK - min)) + min;
+
+                if (random <= gegnerATK){
+                damage=(gegnerMAN*(2*charLevel+10/100))/charDEF
+                damage = Math.round(damage)
+                eigenleben = eigenleben - damage;
+                }
+            }
+            else{
+                random = Math.floor(Math.random() * (gegnerMAN - min)) + min;
+
+                if (random <= gegnerMAN){
+                damage=(gegnerATK*(2*charLevel+10/100))/charDEF
+                damage = Math.round(damage)
+                eigenleben = eigenleben - damage;
+                }
             }
 
 

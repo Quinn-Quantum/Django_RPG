@@ -7,6 +7,7 @@ from .forms import *
 from django.contrib.auth.models import *
 from .gegner import *
 from .ankreifer import *
+import random
 
 def index(request):
     user = get_object_or_404(User, username=request.user.username)
@@ -27,7 +28,10 @@ def kampf_view(request):
     for i in chars:
         if i.user == request.user:
             ankreifer = Ankreifer() #damit die Werte des Chars suaber übergeben werden können
+            ankreifer.level = i.charLevel
             ankreifer.atk = i.charATK
+            ankreifer.man= i.charMAN
+            ankreifer.dEF = i.charDEF
             ankreifer.leben = i.charLeben
             level = i.charLevel
 
@@ -37,7 +41,20 @@ def kampf_view(request):
             if j.id == 1:
                 gegner.name = j.enemyName
                 gegner.atk = j.enemyATK
+                gegner.man = j.enemyMAN
+                gegner.dEF = j.enemyDEF
                 gegner.leben = j.enemyLeben
+    else:
+        idwahl = random.randrange(1,3)
+        enemy = EnemyMod.objects.filter(id=idwahl)
+        for k in enemy:
+            gegner.name = k.enemyName
+            gegner.atk = k.enemyATK
+            gegner.man = k.enemyMAN
+            gegner.dEF = k.enemyDEF
+            gegner.leben = k.enemyLeben
+
+        
     return render(request, 'game/kampf.html', {'gegner':gegner, 'chars': chars, 'user':user, 'ankreifer':ankreifer, 'spieler':spieler })
 
 def charChreate_view(request):
