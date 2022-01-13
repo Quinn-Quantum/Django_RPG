@@ -26,9 +26,9 @@
                             <h1>Gegner</h1>
                             {% if gegner.name == 'Der grinsende Tod'%}
                                 <img src="/static/Der_grinsende_Tod.jpg" />
-                            {% elif gener.name == 'Elektroball'%}
+                            {% elif gegner.name == 'Elektroball'%}
                                 <img src="/static/Elektroball.jpg" />
-                            {% else %}
+                            {% elif gegner.name == 'Jack' %}
                                 <img src="/static/Jack.jpg" />
                             {% endif%}
                             <p>Name:           {{gegner.name}}</p>
