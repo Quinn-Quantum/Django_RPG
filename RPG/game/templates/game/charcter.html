@@ -9,7 +9,7 @@
                 {% if i.user == request.user %}
                     <h3>Dein Char:</h3>
                     <p>Name:            {{ i.charName}}</p>
-                    <p>KLasse:          {{ i.charClasse}}</p>
+                    <p>Klasse:          {{ i.charClasse}}</p>
                     {% if i.charClasse == 'Krieger'%}
                         <img src="/static/kleinerRitter.png" />
                     {% elif i.charClasse == 'Magier'%}
