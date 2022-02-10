@@ -11,7 +11,7 @@
     {% if request.user.is_authenticated %}                <!-- If Schleife um abzufragen ob der User existiert wenn ja Hall user wenn nicht steht ihm die anderen Obtionen zu Verfügung -->
     <p>Hallo {{request.user.username}} !</p>
     <a  id = "start" href="{%url 'log:logout'%}">Logout</a>
-    <a  id = "start" href = "{%url 'game:index"></a>
+    <a  id = "start" href = "{%url 'game:base'%}">Start</a>
     {% else %}
     <a id = "start" href="{%url 'log:login'%}">Login</a>
     <a id = "start" href="{%url 'log:register'%}">Account anlegen</a>

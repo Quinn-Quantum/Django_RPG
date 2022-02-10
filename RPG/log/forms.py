@@ -10,7 +10,7 @@ class RegisterForm(forms.Form):
     def clean_username(self):
         username = self.cleaned_data['username']
         if User.objects.filter(username__iexact=username).exists(): #Usernamen aus der DB auslesen und vergleichen, bechaten Groß und Kleinschreibung nicht
-            raise froms.ValidationError('Username existiert schohn')
+            raise froms.ValidationError('Username existiert schon')
         return username
 
 class LoginForm(forms.Form):
